@@ -1,0 +1,57 @@
+@(signupForm: Form[Login])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@title = {
+Logar
+<small><a href="@routes.SignUp.create">ou, criar conta.</a></small>
+}
+
+@main(title, nav = "signup") {
+
+@helper.form(action = routes.SignUp.submit) {
+
+
+<fieldset>
+    @if(signupForm.hasGlobalErrors) {
+    <p class="error">
+        @signupForm.globalError.message
+    </p>
+    }
+
+    @if(flash.contains("success")) {
+    <p class="success">
+        @flash.get("success")
+    </p>
+    }
+
+    <p>
+        <input type="email" name="email" placeholder="Email" value="@signupForm("email").value">
+    </p>
+    <p>
+        <input type="password" name="password" placeholder="Password">
+    </p>
+    <p>
+        <input type="submit" class="btn primary" value="Vai">
+    </p>
+
+</fieldset>
+
+<!-- <fieldset>
+
+    @checkbox(
+        signupForm("accept"),
+        '_label -> None, '_text -> "You aggree the Terms and conditions",
+        '_showConstraints -> false
+    )
+
+</fieldset>
+
+<div class="actions">
+    <input type="submit" class="btn primary" value="Ir">
+</div>
+
+}  -->
+
+}

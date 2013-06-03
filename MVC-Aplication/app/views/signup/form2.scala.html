@@ -1,0 +1,61 @@
+@(signupForm2: Form[User])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@title = {
+Criar conta
+}
+
+@main(title, nav = "signup2") {
+
+@helper.form(action = routes.SignUp.submit) {
+
+<fieldset>
+    <legend>Informações</legend>
+
+    @inputText(
+    signupForm2("username"),
+    '_label -> "Username",
+    '_help -> "Favor entrar com um Username válido.",
+    '_error -> signupForm2.globalError
+    )
+
+    @inputText(
+    signupForm2("email"), '_label -> "Email",
+    '_help -> "Entre com um Email válido."
+    )
+
+    @inputPassword(
+    signupForm2("password"),
+    '_label -> "Password",
+    '_help -> "Um password com no mínimo 6 caracteres. "
+    )
+
+    @inputPassword(
+    signupForm2("repeatPassword"),
+    '_label -> "Repita o password",
+    '_help -> "Favor repetir o password.",
+    '_error -> signupForm2.error("password")
+    )
+
+</fieldset>
+
+ <fieldset>
+
+    @checkbox(
+        signupForm2("accept"),
+        '_label -> None, '_text -> "Você concorca com nossos termos.",
+        '_showConstraints -> false
+    )
+
+</fieldset>
+
+<div class="actions">
+    <input type="submit" class="btn primary" value="Vai">
+    <a href="@routes.Application.index" class="btn">Cancelar</a>
+</div>
+
+}
+
+}
